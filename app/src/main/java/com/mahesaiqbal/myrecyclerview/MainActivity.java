@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
         list.addAll(PresidentData.getListData());
 
+        setActionBarTitle("Mode List");
+
         showRecyclerList();
 
     }
