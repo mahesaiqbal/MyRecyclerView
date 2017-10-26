@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.mahesaiqbal.myrecyclerview.adapter.CardViewPresidentAdapter;
 import com.mahesaiqbal.myrecyclerview.adapter.GridPresidentAdapter;
@@ -50,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
         listPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(listPresidentAdapter);
 
+        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+
+                showSelectedPresident(list.get(position));
+
+            }
+
+        });
+
     }
 
     private void showRecyclerGrid() {
@@ -59,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
         gridPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(gridPresidentAdapter);
 
+        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+
+                showSelectedPresident(list.get(position));
+
+            }
+
+        });
+
     }
 
     private void showRecyclerCardView() {
@@ -67,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         CardViewPresidentAdapter cardViewPresidentAdapter = new CardViewPresidentAdapter(this);
         cardViewPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(cardViewPresidentAdapter);
+
+    }
+
+    private void showSelectedPresident(President president){
+
+        Toast.makeText(this, "Kamu memilih "+president.getName(), Toast.LENGTH_SHORT).show();
 
     }
 
